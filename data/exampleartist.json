@@ -1,0 +1,29 @@
+{
+  "_id": {
+    "$oid": "69212efab74932f43054a5ad"
+  },
+  "name": "CEBE",
+  "photo": "https://res.cloudinary.com/dly6skk3d/image/upload/v1764165931/i819lz2muxcqmjpuexma.jpg",
+  "tagline": "REALISTIC PORTRAITS & BLACKWORK",
+  "gallery": [
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166219/et0athppijzbmffdj9sy.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166220/pm7ba9pcvnxyyi9jsxku.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166220/cnbrijq2t0v0alrashz4.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166221/vdlricyecs8hhiur7vxt.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166221/ckvvulwxdexepjjret4p.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166222/f0u3ynetqed0diuc8k4r.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166221/o5tmolejky9ggt3g5ztr.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166220/zzok4sesy4cuofhtdv3e.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166223/x5lvfuhtrf6jidyq9sgg.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166223/wshtfbureagnik7l7012.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166224/uqg5vve4fegcqubitfay.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166224/tlxi8puftj59llhzswzo.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166224/c5zskahu4ga3vxkd91ll.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166224/mmtapajyt6djwbq5wcco.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166224/j5dusy1igfny2ses40sx.jpg",
+    "https://res.cloudinary.com/dly6skk3d/image/upload/v1764166226/gknagtnza4rsqcqabq6y.jpg"
+  ],
+  "updatedAt": "2025-11-26T14:11:31.632Z",
+  "isActive": true,
+  "slug": "UFO"
+}

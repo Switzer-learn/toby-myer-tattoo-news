@@ -1,106 +1,161 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useRef } from "react";
+import { Clock, User, ChevronLeft, ChevronRight } from "lucide-react";
 import { Post } from "@/app/lib/db/posts";
 
 interface PostCarouselClientProps {
     posts: Post[];
 }
 
+const POSTS_PER_PAGE = 6;
+
 export default function PostCarouselClient({ posts }: PostCarouselClientProps) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const swiperRef = useRef<any>(null);
+    const [currentPage, setCurrentPage] = useState(1);
 
     if (!posts || posts.length === 0) {
         return null;
     }
 
+    // Calculate pagination
+    const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+    const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+    const endIndex = startIndex + POSTS_PER_PAGE;
+    const currentPosts = posts.slice(startIndex, endIndex);
+
+    const handlePrevPage = () => {
+        setCurrentPage((prev) => Math.max(prev - 1, 1));
+    };
+
+    const handleNextPage = () => {
+        setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+    };
+
     return (
-        <section className="bg-black text-white py-20 border-t border-white/10 overflow-hidden">
+        <section className="bg-black text-white py-20 border-t border-white/10">
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-end mb-12">
                     <div>
                         <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2">
-                            Spotlight on Artists
+                            STORIES
                         </h3>
-                        <p className="text-gray-400">Masters of the craft in Bali.</p>
+                        <p className="text-gray-400">Latest articles from Bali&apos;s tattoo scene.</p>
                     </div>
 
-                    <div className="flex gap-4">
-                        <button
-                            onClick={() => swiperRef.current?.slidePrev()}
-                            className="p-3 border border-white/20 hover:bg-white hover:text-black transition-colors rounded-full"
-                            aria-label="Previous slide"
-                        >
-                            <ArrowLeft size={20} />
-                        </button>
-                        <button
-                            onClick={() => swiperRef.current?.slideNext()}
-                            className="p-3 border border-white/20 hover:bg-white hover:text-black transition-colors rounded-full"
-                            aria-label="Next slide"
-                        >
-                            <ArrowRight size={20} />
-                        </button>
-                    </div>
+                    {totalPages > 1 && (
+                        <span className="text-sm text-gray-400">
+                            Page {currentPage} of {totalPages}
+                        </span>
+                    )}
                 </div>
 
-                <Swiper
-                    modules={[Navigation, Autoplay]}
-                    spaceBetween={30}
-                    slidesPerView={1}
-                    loop={true}
-                    autoplay={{ delay: 5000, disableOnInteraction: false }}
-                    onBeforeInit={(swiper) => {
-                        swiperRef.current = swiper;
-                    }}
-                    breakpoints={{
-                        640: { slidesPerView: 2 },
-                        1024: { slidesPerView: 3 },
-                    }}
-                    className="w-full"
-                >
-                    {posts.map((post) => (
-                        <SwiperSlide key={post._id.toString()}>
-                            <Link href={`/posts/${post.slug}`} className="group block h-full">
-                                <div className="relative aspect-3/4 overflow-hidden border-4 border-black outline outline-1 outline-white/20 mb-6">
+                {/* Grid Layout - 2 columns, 3 rows */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    {currentPosts.map((post) => (
+                        <Link
+                            key={post._id.toString()}
+                            href={`/posts/${post.slug}`}
+                            className="group block border border-white/10 hover:border-white/30 transition-all duration-300 bg-zinc-900/50 hover:bg-zinc-900"
+                        >
+                            <div className="flex gap-6 p-6">
+                                {/* Thumbnail Image - Small */}
+                                <div className="relative w-32 h-32 shrink-0 overflow-hidden border border-white/10">
                                     {post.image.includes("cloudinary") ? (
                                         <CldImage
                                             src={post.image.split("/upload/")[1]?.replace(/v\d+\//, "").split(".")[0] || post.image}
                                             alt={post.title}
                                             fill
-                                            className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                            sizes="128px"
                                         />
                                     ) : (
                                         <Image
                                             src={post.image}
                                             alt={post.title}
                                             fill
-                                            className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                                            className="object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
                                     )}
-                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 </div>
-                                <div>
-                                    <span className="text-xs font-bold uppercase text-gray-500 mb-2 block">
-                                        {post.author}
-                                    </span>
-                                    <h4 className="text-xl font-bold uppercase tracking-wide group-hover:text-gray-300 transition-colors line-clamp-2">
-                                        {post.title}
-                                    </h4>
+
+                                {/* Text Content - Dominant */}
+                                <div className="flex-1 flex flex-col justify-between min-h-[128px]">
+                                    <div>
+                                        {/* Meta Info */}
+                                        <div className="flex items-center gap-4 mb-3">
+                                            <span className="flex items-center gap-1.5 text-xs text-gray-400">
+                                                <User size={14} />
+                                                {post.author}
+                                            </span>
+                                            <span className="flex items-center gap-1.5 text-xs text-gray-400">
+                                                <Clock size={14} />
+                                                {post.readTime} min read
+                                            </span>
+                                        </div>
+
+                                        {/* Title */}
+                                        <h4 className="text-xl md:text-2xl font-bold mb-3 leading-tight group-hover:text-gray-300 transition-colors line-clamp-2">
+                                            {post.title}
+                                        </h4>
+
+                                        {/* Excerpt */}
+                                        <p className="text-sm text-gray-400 line-clamp-2 leading-relaxed">
+                                            {post.content.replace(/<[^>]*>/g, '').substring(0, 120)}...
+                                        </p>
+                                    </div>
+
+                                    {/* Read More Link */}
+                                    <div className="mt-4">
+                                        <span className="text-xs font-bold uppercase tracking-widest text-white group-hover:text-gray-300 transition-colors border-b border-white/20 group-hover:border-white/40 pb-1">
+                                            Read Article →
+                                        </span>
+                                    </div>
                                 </div>
-                            </Link>
-                        </SwiperSlide>
+                            </div>
+                        </Link>
                     ))}
-                </Swiper>
+                </div>
+
+                {/* Pagination Controls */}
+                {totalPages > 1 && (
+                    <div className="flex justify-center items-center gap-4 mt-12">
+                        <button
+                            onClick={handlePrevPage}
+                            disabled={currentPage === 1}
+                            className="p-3 border border-white/20 hover:bg-white hover:text-black transition-colors rounded-full disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-white"
+                            aria-label="Previous page"
+                        >
+                            <ChevronLeft size={20} />
+                        </button>
+
+                        <div className="flex gap-2">
+                            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                                <button
+                                    key={page}
+                                    onClick={() => setCurrentPage(page)}
+                                    className={`w-10 h-10 rounded-full border transition-colors ${currentPage === page
+                                        ? "bg-white text-black border-white"
+                                        : "border-white/20 hover:border-white/40"
+                                        }`}
+                                >
+                                    {page}
+                                </button>
+                            ))}
+                        </div>
+
+                        <button
+                            onClick={handleNextPage}
+                            disabled={currentPage === totalPages}
+                            className="p-3 border border-white/20 hover:bg-white hover:text-black transition-colors rounded-full disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-white"
+                            aria-label="Next page"
+                        >
+                            <ChevronRight size={20} />
+                        </button>
+                    </div>
+                )}
             </div>
         </section>
     );

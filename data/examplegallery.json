@@ -1,0 +1,11 @@
+{
+  "_id": {
+    "$oid": "6927068438e6b62ca7e3ede6"
+  },
+  "name": "IMG-20241029-WA0102",
+  "category": "black_n_white",
+  "image": "https://res.cloudinary.com/dly6skk3d/image/upload/v1764165251/gbmmh4wdqz2xy1huggeo.jpg",
+  "createdAt": "2025-11-26T13:54:12.618Z",
+  "updatedAt": "2025-11-26T13:54:12.618Z",
+  "isActive": true
+}

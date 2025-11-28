@@ -1,0 +1,17 @@
+{
+  "_id": {
+    "$oid": "69296880d407097d520c8b1a"
+  },
+  "title": "Hellow World this is the 3rd test",
+  "slug": "hellow-world-this-is-the-3rd-test",
+  "content": "<blockquote><em><u>Bla Bla Bla Bla</u></em></blockquote><h1><a href=\"https://willycandra.dev\" rel=\"noopener noreferrer\" target=\"_blank\">willycandra.dev</a></h1>",
+  "image": "https://res.cloudinary.com/dly6skk3d/image/upload/v1764321364/a3fkera54zcjwgxru0au.webp",
+  "author": "Admin",
+  "wordCount": 4,
+  "readTime": 1,
+  "createdAt": "2025-11-28T09:16:48.590Z",
+  "updatedAt": "2025-11-28T12:29:40.533Z",
+  "isActive": true,
+  "featured": true,
+  "category": "news"
+}
