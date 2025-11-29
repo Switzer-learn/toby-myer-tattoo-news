@@ -56,7 +56,7 @@ export default function ArtistGallery() {
     }
 
     return (
-        <section className="bg-black text-white py-20 border-t border-white/10">
+        <section id="artists" className="bg-black text-white py-20 border-t border-white/10">
             <div className="container mx-auto px-4 mb-10">
                 <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter">
                     Artists Gallery

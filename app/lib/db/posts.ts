@@ -14,6 +14,7 @@ export interface Post {
   updatedAt: string | Date;
   isActive: boolean;
   featured: boolean;
+  category?: string;
 }
 
 const COLLECTION_NAME = "posts";

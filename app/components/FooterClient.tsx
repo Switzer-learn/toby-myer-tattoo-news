@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Instagram, Youtube, MessageCircle, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import { Config } from "@/app/lib/db/config";
@@ -10,11 +11,10 @@ interface FooterClientProps {
 }
 
 const menu = [
-    { name: "About", link: "/about" },
-    { name: "Contact", link: "/contact" },
-    { name: "Gallery", link: "/gallery" },
-    { name: "Artists", link: "/artists" },
-    { name: "Latest News", link: "/latest-news" },
+    { name: "Posts", link: "/#posts" },
+    { name: "Artists", link: "https://www.balitattooheroes.com/" },
+    { name: "Gallery", link: "/#gallery" },
+    { name: "Contact", link: "https://www.commandos18tattoobali.com/contact" },
 ];
 
 export default function FooterClient({ config }: FooterClientProps) {
@@ -24,14 +24,18 @@ export default function FooterClient({ config }: FooterClientProps) {
                 <div className="flex flex-col md:flex-row justify-between gap-12 mb-20">
                     {/* Left Column */}
                     <div className="w-full md:w-1/3">
-                        <h2 className="text-2xl font-bold tracking-tighter uppercase mb-2">
-                            {config?.siteConfig.name || "Commandos18"}
-                            <span className="block text-xs font-normal text-gray-400 tracking-widest">
-                                Tattoo News
-                            </span>
-                        </h2>
+                        <div className="mb-6">
+                            <Image
+                                src="/balitattonews_logo.webp"
+                                alt="Bali Tattoo News"
+                                width={180}
+                                height={72}
+                                className="object-contain"
+                            />
+                        </div>
+                        <h2 className="text-2xl font-bold tracking-wide uppercase">BALI TATTOO NEWS</h2>
                         <p className="text-gray-400 text-sm mb-8 max-w-xs">
-                            {config?.siteConfig.description || "Stories, culture, and art from Bali's tattoo scene."}
+                            "Stories, culture, and art from Bali's tattoo scene."
                         </p>
 
                         <nav className="flex flex-col gap-2 text-sm font-medium uppercase tracking-wide">
@@ -91,7 +95,7 @@ export default function FooterClient({ config }: FooterClientProps) {
                         {config?.contactInfo.address && (
                             <motion.a
                                 whileHover={{ scale: 1.05 }}
-                                href="https://maps.google.com"
+                                href="https://maps.app.goo.gl/mRgDvQwCN7oPfs4k7"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="group flex items-center gap-3 text-sm font-bold uppercase tracking-widest border border-white/20 px-6 py-3 hover:bg-white hover:text-black transition-all"
@@ -113,7 +117,7 @@ export default function FooterClient({ config }: FooterClientProps) {
                             Privacy Policy
                         </Link>
                     </div>
-                    <p>© 2025 {config?.siteConfig.name || "Commandos18tattoos"}</p>
+                    <p>© {new Date().getFullYear()} {config?.siteConfig.name || "Bali Tattoo News"}</p>
                 </div>
             </div>
         </footer>

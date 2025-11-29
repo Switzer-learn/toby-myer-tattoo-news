@@ -4,14 +4,16 @@ import Link from "next/link";
 import { Instagram, Youtube, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { Config } from "@/app/lib/db/config";
+import Image from "next/image";
 
 interface HeaderClientProps {
     config: Config | null;
 }
 
 const menu = [
+    { name: "Posts", link: "/#posts" },
     { name: "Artists", link: "https://www.balitattooheroes.com/" },
-    { name: "Gallery", link: "https://www.commandos18tattoobali.com/gallery" },
+    { name: "Gallery", link: "/#gallery" },
     { name: "Contact", link: "https://www.commandos18tattoobali.com/contact" },
 ];
 
@@ -21,10 +23,23 @@ export default function HeaderClient({ config }: HeaderClientProps) {
             <div className="container mx-auto px-4 h-20 flex items-center justify-between">
                 {/* Logo / Title */}
                 <Link href="/" className="text-2xl font-bold tracking-tighter uppercase">
-                    Commandos18
-                    <span className="block text-xs font-normal text-gray-400 tracking-widest">
-                        Tattoo News
-                    </span>
+                    <div className="flex justify-center items-center gap-4">
+                        <Image
+                            src="/balitattonews_logo.webp"
+                            alt="Bali Tattoo News"
+                            width={48}
+                            height={48}
+                            className="object-contain"
+                        />
+                        <div className="flex flex-col">
+                            <span className="text-xl font-bold tracking-tighter uppercase">Bali Tattoo News</span>
+                            <span className="block text-xs font-normal text-gray-400 tracking-widest">
+                                Delivering Latest Tattoo News in Bali
+                            </span>
+                        </div>
+
+                    </div>
+
                 </Link>
 
                 {/* Desktop Navigation */}

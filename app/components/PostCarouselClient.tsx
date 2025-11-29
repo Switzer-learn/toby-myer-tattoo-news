@@ -35,7 +35,7 @@ export default function PostCarouselClient({ posts }: PostCarouselClientProps) {
     };
 
     return (
-        <section className="bg-black text-white py-20 border-t border-white/10">
+        <section id="posts" className="bg-black text-white py-20 border-t border-white/10">
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-end mb-12">
                     <div>
@@ -86,6 +86,11 @@ export default function PostCarouselClient({ posts }: PostCarouselClientProps) {
                                     <div>
                                         {/* Meta Info */}
                                         <div className="flex items-center gap-4 mb-3">
+                                            {post.category && (
+                                                <span className="text-xs font-bold uppercase tracking-wider bg-white text-black px-2 py-0.5">
+                                                    {post.category}
+                                                </span>
+                                            )}
                                             <span className="flex items-center gap-1.5 text-xs text-gray-400">
                                                 <User size={14} />
                                                 {post.author}

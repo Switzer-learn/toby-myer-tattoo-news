@@ -1,0 +1,10 @@
+{
+  "_id": {
+    "$oid": "692692669a7faf4b936e4ea3"
+  },
+  "name": "Large Package Promo",
+  "image": "https://res.cloudinary.com/dly6skk3d/image/upload/v1764135454/dobbocsi6iesv8hebjkq.png",
+  "isActive": true,
+  "createdAt": "2025-11-26T05:38:46.504Z",
+  "updatedAt": "2025-11-26T05:38:46.504Z"
+}
