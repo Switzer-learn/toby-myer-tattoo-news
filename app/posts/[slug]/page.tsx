@@ -1,4 +1,4 @@
-import { getPostBySlug, getPosts } from "@/app/lib/db/posts";
+import { getPostBySlug } from "@/app/lib/db/posts";
 import { notFound } from "next/navigation";
 import PostClient from "./PostClient";
 
@@ -6,14 +6,6 @@ interface PostPageProps {
     params: {
         slug: string;
     };
-}
-
-// Generate static params for all posts
-export async function generateStaticParams() {
-    const posts = await getPosts();
-    return posts.map((post) => ({
-        slug: post.slug,
-    }));
 }
 
 // Generate metadata for SEO
